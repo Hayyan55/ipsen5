@@ -1,0 +1,82 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["referentialIntegrity"]
+}
+
+datasource db {
+  provider             = "mysql"
+  url                  = env("DATABASE_URL")
+  shadowDatabaseUrl    = env("SHADOW_DATABASE_URL")
+  referentialIntegrity = "prisma"
+}
+
+model Report {
+  id                String        @id @default(cuid())
+  hostname          String
+  score             Int
+  reportData        Json
+  user              User          @relation(name: "userReports", fields: [userId], references: [id])
+  userId            String
+  userSubmittedName SubmittedName @relation(name: "nameReports", fields: [submittedName, userId], references: [name, userId])
+  submittedName     String
+  phone             Phone?        @relation(name: "phoneReports", fields: [phoneNumber, userId], references: [phoneNumber, userId])
+  phoneNumber       String?
+  createdAt         DateTime      @default(now())
+}
+
+model Phone {
+  phoneNumber String
+  user        User     @relation(name: "userPhones", fields: [userId], references: [id])
+  userId      String
+  reports     Report[] @relation("phoneReports")
+
+  @@id([phoneNumber, userId])
+}
+
+model SubmittedName {
+  name   String
+  user   User    @relation(name: "userSubmittedNames", fields: [userId], references: [id])
+  userId String
+  report Report? @relation("nameReports")
+
+  @@id([name, userId])
+}
+
+model User {
+  id           String          @id @default(cuid())
+  email        String          @unique
+  createdAt    DateTime        @default(now())
+  reports      Report[]        @relation("userReports")
+  phoneNumbers Phone[]         @relation("userPhones")
+  names        SubmittedName[] @relation("userSubmittedNames")
+}
+
+model HostnameBlacklist {
+  hostname  String   @id
+  createdAt DateTime @default(now())
+}
+
+model IPBlacklist {
+  ip        String   @id
+  createdAt DateTime @default(now())
+  expiresAt DateTime
+}
+
+model ScanLog {
+  id          String    @id @default(cuid())
+  ip          String
+  hostname    String
+  startedAt   DateTime  @default(now())
+  completedAt DateTime?
+  completed   Boolean   @default(false)
+}
+
+model Configuration {
+  setting Setting @id
+  value   Int
+}
+
+enum Setting {
+  SCANS_PER_24H
+  IP_BAN_DURATION
+}
