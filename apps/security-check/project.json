@@ -69,6 +69,20 @@
         "proxyConfig": "apps/security-check/proxy.conf.json"
       }
     },
+    "serve-with-api": {
+      "builder": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          {
+            "command": "ng serve security-check-api"
+          },
+          {
+            "command": "ng serve security-check --open"
+          }
+        ],
+        "parallel": true
+      }
+    },
     "extract-i18n": {
       "executor": "@angular-devkit/build-angular:extract-i18n",
       "options": {
