@@ -16,9 +16,17 @@
         "inlineStyleLanguage": "scss",
         "assets": [
           "apps/security-check/src/favicon.ico",
-          "apps/security-check/src/assets"
+          "apps/security-check/src/assets",
+          {
+            "input": "libs/shared/assets/src/assets",
+            "glob": "*/**",
+            "output": "assets/shared"
+          }
         ],
-        "styles": ["apps/security-check/src/styles.scss"],
+        "styles": [
+          "libs/shared/styles/src/index.scss",
+          "apps/security-check/src/styles.scss"
+        ],
         "scripts": []
       },
       "configurations": {

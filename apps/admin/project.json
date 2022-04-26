@@ -14,8 +14,19 @@
         "polyfills": "apps/admin/src/polyfills.ts",
         "tsConfig": "apps/admin/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
-        "assets": ["apps/admin/src/favicon.ico", "apps/admin/src/assets"],
-        "styles": ["apps/admin/src/styles.scss"],
+        "assets": [
+          "apps/admin/src/favicon.ico",
+          "apps/admin/src/assets",
+          {
+            "input": "libs/shared/assets/src/assets",
+            "glob": "*/**",
+            "output": "assets/shared"
+          }
+        ],
+        "styles": [
+          "libs/shared/styles/src/index.scss",
+          "apps/admin/src/styles.scss"
+        ],
         "scripts": []
       },
       "configurations": {

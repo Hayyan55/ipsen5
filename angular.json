@@ -8,6 +8,7 @@
     "security-check-api": "apps/security-check-api",
     "security-check-api-interface": "libs/security-check-api-interface",
     "security-check-e2e": "apps/security-check-e2e",
-    "shared-assets": "libs/shared/assets"
+    "shared-assets": "libs/shared/assets",
+    "shared-styles": "libs/shared/styles"
   }
 }
