@@ -2,6 +2,7 @@
   "version": 2,
   "projects": {
     "security-check": "apps/security-check",
+    "security-check-api": "apps/security-check-api",
     "security-check-e2e": "apps/security-check-e2e"
   }
 }
