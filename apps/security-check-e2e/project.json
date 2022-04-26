@@ -1,0 +1,28 @@
+{
+  "root": "apps/security-check-e2e",
+  "sourceRoot": "apps/security-check-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nrwl/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/security-check-e2e/cypress.json",
+        "devServerTarget": "security-check:serve:development"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "security-check:serve:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/security-check-e2e/**/*.{js,ts}"]
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["security-check"]
+}

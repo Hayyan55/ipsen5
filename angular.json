@@ -1,4 +1,7 @@
 {
   "version": 2,
-  "projects": {}
+  "projects": {
+    "security-check": "apps/security-check",
+    "security-check-e2e": "apps/security-check-e2e"
+  }
 }
