@@ -39,3 +39,9 @@ testem.log
 Thumbs.db
 
 .angular
+
+# Only use yarn lockfile
+!yarn.lock
+package-lock.json
+pnpm-lock.yaml
+
