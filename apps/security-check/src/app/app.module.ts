@@ -9,7 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [AppComponent, ApiTestComponent],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     HttpClientModule,
     RouterModule.forRoot([], { initialNavigation: 'enabledBlocking' }),
   ],

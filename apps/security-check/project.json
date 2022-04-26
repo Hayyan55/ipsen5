@@ -8,7 +8,7 @@
       "executor": "@angular-devkit/build-angular:browser",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/apps/security-check",
+        "outputPath": "dist/apps/security-check/browser",
         "index": "apps/security-check/src/index.html",
         "main": "apps/security-check/src/main.ts",
         "polyfills": "apps/security-check/src/polyfills.ts",
@@ -69,8 +69,22 @@
         "proxyConfig": "apps/security-check/proxy.conf.json"
       }
     },
+    "serve-ssr": {
+      "executor": "@nguniversal/builders:ssr-dev-server",
+      "configurations": {
+        "development": {
+          "browserTarget": "security-check:build:development",
+          "serverTarget": "security-check:server:development"
+        },
+        "production": {
+          "browserTarget": "security-check:build:production",
+          "serverTarget": "security-check:server:production"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
     "serve-with-api": {
-      "builder": "@nrwl/workspace:run-commands",
+      "executor": "@nrwl/workspace:run-commands",
       "options": {
         "commands": [
           {
@@ -105,6 +119,31 @@
         "jestConfig": "apps/security-check/jest.config.ts",
         "passWithNoTests": true
       }
+    },
+    "server": {
+      "executor": "@angular-devkit/build-angular:server",
+      "options": {
+        "outputPath": "dist/apps/security-check/server",
+        "main": "apps/security-check/src/ssr.server.ts",
+        "tsConfig": "apps/security-check/tsconfig.server.json"
+      },
+      "configurations": {
+        "production": {
+          "outputHashing": "media",
+          "fileReplacements": [
+            {
+              "replace": "apps/security-check/src/environments/environment.ts",
+              "with": "apps/security-check/src/environments/environment.prod.ts"
+            }
+          ]
+        },
+        "development": {
+          "optimization": false,
+          "sourceMap": true,
+          "extractLicenses": false
+        }
+      },
+      "defaultConfiguration": "production"
     }
   },
   "tags": []
