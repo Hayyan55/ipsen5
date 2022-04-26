@@ -8,6 +8,6 @@ describe('security-check', () => {
     cy.login('my-email@something.com', 'myPassword');
 
     // Function helper example, see `../support/app.po.ts` file
-    getGreeting().contains('Welcome security-check');
+    getGreeting().contains('Welcome to security-check-api!');
   });
 });
