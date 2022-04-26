@@ -14,7 +14,11 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@ipsen5/security-check-api-interface": [
+        "libs/security-check-api-interface/src/index.ts"
+      ]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

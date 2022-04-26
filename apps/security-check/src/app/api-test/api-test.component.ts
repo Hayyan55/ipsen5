@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { API_URL, ApiTestResponse } from '@ipsen5/security-check-api-interface';
 
 @Component({
   selector: 'app-api-test',
@@ -15,7 +16,7 @@ export class ApiTestComponent implements OnInit {
   }
 
   private getWelcomeMessage() {
-    this.http.get<{ message: string }>('/api/').subscribe((res) => {
+    this.http.get<ApiTestResponse>(API_URL).subscribe((res) => {
       this.apiResponse = res.message;
     });
   }

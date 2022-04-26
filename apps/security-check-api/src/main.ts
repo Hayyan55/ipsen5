@@ -4,11 +4,12 @@
  */
 
 import * as express from 'express';
+import { ApiTestResponse, API_URL } from '@ipsen5/security-check-api-interface';
 
 const app = express();
 
-app.get('/api', (req, res) => {
-  res.send({ message: 'Welcome to security-check-api!' });
+app.get(API_URL, (req, res) => {
+  res.send({ message: 'Welcome to security-check-api!' } as ApiTestResponse);
 });
 
 const port = process.env.port || 3333;

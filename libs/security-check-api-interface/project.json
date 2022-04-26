@@ -1,0 +1,23 @@
+{
+  "root": "libs/security-check-api-interface",
+  "sourceRoot": "libs/security-check-api-interface/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/security-check-api-interface/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/security-check-api-interface"],
+      "options": {
+        "jestConfig": "libs/security-check-api-interface/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}
